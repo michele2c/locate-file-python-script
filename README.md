@@ -20,22 +20,60 @@ A Python utility for finding files in a directory based on size and modification
 
 ## Usage
 
-### As a Module
+### Command Line Interface
+
+Run the script directly to use the interactive interface:
 
 ```python
-from locate_file_function import locate_file, format_size
+python locate-file-function.py
+```
 
-# Find files modified in the last 7 days, between 1KB and 100MB
-files = locate_file(
-    cwd="/path/to/search",
-    min_size=1024,          # 1KB
-    max_size=104857600,     # 100MB
-    days_old=7,
-    include_hidden=False
-)
+You will be prompted to:
 
-for file in files:
-    print(f"File: {file['File']}")
-    print(f"Size: {format_size(file['Size'])}")
-    print(f"Modified: {file['Last Modified']}")
+Enter the search directory path
 
+Specify the number of days to filter by (optional)
+
+## Function Parameters
+
+```python
+locate_file(cwd=None, min_size=0, max_size=None, days_old=None, include_hidden=False)
+```
+
+- cwd: Directory to search (default: current directory)
+
+- min_size: Minimum file size in bytes (default: 0)
+
+- max_size: Maximum file size in bytes (default: None)
+
+- days_old: Only include files modified within this many days (default: None)
+
+- include_hidden: Whether to include hidden files (default: False)
+
+Returns a list of dictionaries containing file information:
+
+- File path
+
+- File size
+
+- Last modification date
+
+## Error Handling
+
+- The script handles:
+
+- Invalid directory paths
+
+- Permission errors
+
+- Invalid date inputs
+
+- File access errors
+
+## Example Output
+
+```text
+File: /path/to/file/document.pdf
+Size: 2 MB
+Modified: 2023-12-01 14:30:45
+```
