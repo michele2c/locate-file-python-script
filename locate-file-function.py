@@ -80,10 +80,10 @@ if __name__ == "__main__":
         
         response = locate_file(
             user_input,
-            min_size=1024,  # 1KB minimum
+            min_size=1,  # 1KB minimum
             max_size=1024 * 1024 * 100,  # 100MB maximum
             days_old=days_old,
-            include_hidden=False
+            include_hidden=False # change to True to include hidden
         )
         
         if not response:
