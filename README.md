@@ -1,6 +1,6 @@
 # File Locator
 
-A Python utility for finding files in a directory based on size and modification date criteria.
+A Python script to find and print out files, their size, and the last modification date in a directory based on days old.
 
 ## Features
 
@@ -30,7 +30,7 @@ python locate-file-function.py
 
 You will be prompted to:
 
-Enter the search directory path
+Enter the search directory path.
 
 Specify the number of days to filter by (optional)
 
