@@ -1,4 +1,12 @@
 import os
+import json
+
+def human_readable_size(size):
+    # Convert size to human-readable format
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if size < 1024.0:
+            return f"{size:.2f} {unit}"
+        size /= 1024.0
 
 def locate_file(cwd=None):
     if cwd is None: # Default to the current working directory if path is not provided
@@ -16,7 +24,7 @@ def locate_file(cwd=None):
             file_path = os.path.join(folder, file)
             file_info = {
                 'File': file_path,
-                'Size': os.path.getsize(file_path)
+                'Size': human_readable_size(os.path.getsize(file_path))
                 }
             file_dic.append(file_info) # append the file_info to file_dic
 
@@ -30,4 +38,5 @@ if __name__ == "__main__":
         user_input = None
 
     response = locate_file(user_input)
-    print(*response, sep="\n")
+    for file_info in response:
+        print(json.dumps(file_info, indent=1))
